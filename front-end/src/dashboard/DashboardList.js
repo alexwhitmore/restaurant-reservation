@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const DashboardList = ({ reservation }) => {
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const cancelHandler = (e) => {
     e.preventDefault();
 
@@ -12,10 +15,9 @@ const DashboardList = ({ reservation }) => {
       )
     ) {
       axios
-        .put(
-          `http://localhost:5000/reservations/${reservation.reservation_id}/status`,
-          { data: { status: 'cancelled' } }
-        )
+        .put(`${API_BASE_URL}/${reservation.reservation_id}/status`, {
+          data: { status: 'cancelled' },
+        })
         .then((response) =>
           response.status === 200 ? window.location.reload() : null
         )

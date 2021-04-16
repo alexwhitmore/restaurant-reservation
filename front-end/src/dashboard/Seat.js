@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 const Seat = ({ table }) => {
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const finishHandler = (e) => {
     e.preventDefault();
 
@@ -11,7 +14,7 @@ const Seat = ({ table }) => {
       )
     ) {
       axios
-        .delete(`http://localhost:5000/tables/${table.table_id}/seat`)
+        .delete(`${API_BASE_URL}/tables/${table.table_id}/seat`)
         .then((response) =>
           response.status === 200 ? window.location.reload() : 0
         )

@@ -48,7 +48,6 @@ npm start
 3. Optionally, you can connect the React app to the server in the frontend .env file.
 
 ```
-// This is set up by default
 REACT_APP_API_BASE_URL=http://localhost:5000
 ```
 

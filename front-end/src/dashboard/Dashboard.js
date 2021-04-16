@@ -63,7 +63,7 @@ function Dashboard() {
         </div>
       </div>
       {reservations.length === 0 && <NoReservation />}
-      <div className='mr-5 ml-5'>
+      <div className='mr-5 ml-5 pb-5'>
         <div className='row d-flex justify-content-center'>
           {reservations.map((reservation) => (
             <DashboardList

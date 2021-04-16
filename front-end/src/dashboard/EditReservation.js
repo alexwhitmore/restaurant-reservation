@@ -9,6 +9,9 @@ const EditReservation = () => {
   const { reservation_id } = useParams();
   const history = useHistory();
 
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const initialState = {
     first_name: '',
     last_name: '',
@@ -49,7 +52,7 @@ const EditReservation = () => {
     };
 
     axios
-      .put(`http://localhost:5000/reservations/${reservation_id}`, {
+      .put(`${API_BASE_URL}/${reservation_id}`, {
         data: updatedReservation,
       })
       .then((response) =>
@@ -69,9 +72,7 @@ const EditReservation = () => {
 
   useEffect(() => {
     const getReservation = async () => {
-      const response = await fetch(
-        `http://localhost:5000/reservations/${reservation_id}`
-      );
+      const response = await fetch(`${API_BASE_URL}/${reservation_id}`);
       const infoFromAPI = await response.json();
       setReservation(infoFromAPI);
 
@@ -94,7 +95,7 @@ const EditReservation = () => {
       });
     };
     getReservation();
-  }, [reservation_id]);
+  }, [API_BASE_URL, reservation_id]);
 
   return (
     <div className='container pt-5'>

@@ -7,6 +7,9 @@ const ReservationForm = () => {
   let history = useHistory();
   const [reservationsError, setReservationsError] = useState(null);
 
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const initialState = {
     first_name: '',
     last_name: '',
@@ -47,7 +50,7 @@ const ReservationForm = () => {
     };
 
     axios
-      .post(`http://localhost:5000/reservations`, { data: reservation })
+      .post(`${API_BASE_URL}/reservations`, { data: reservation })
       .then((response) =>
         response.status === 201
           ? history.push(`/dashboard?date=${reservation_date}`)

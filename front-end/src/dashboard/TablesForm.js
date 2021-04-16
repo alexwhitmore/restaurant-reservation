@@ -6,6 +6,9 @@ import axios from 'axios';
 const TablesForm = () => {
   let history = useHistory();
 
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const [tableError, setTableError] = useState(null);
   const [newTable, setNewTable] = useState({
     table_name: '',
@@ -31,7 +34,7 @@ const TablesForm = () => {
     };
 
     axios
-      .post('http://localhost:5000/tables', { data: table })
+      .post(`${API_BASE_URL}/tables`, { data: table })
       .then((response) =>
         response.status === 201 ? history.push('/dashboard') : null
       )

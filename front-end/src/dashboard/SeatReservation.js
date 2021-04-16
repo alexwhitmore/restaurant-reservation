@@ -9,6 +9,9 @@ const SeatReservation = () => {
   const { reservation_id } = useParams();
   const history = useHistory();
 
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
   const loadTables = () => {
     const abortController = new AbortController();
     listTables(abortController.signal)
@@ -31,7 +34,7 @@ const SeatReservation = () => {
 
     if (reservation_id) {
       axios
-        .put(`http://localhost:5000/tables/${tableId}/seat`, {
+        .put(`${API_BASE_URL}/tables/${tableId}/seat`, {
           data: { reservation_id: reservation_id },
         })
         .then((response) =>
